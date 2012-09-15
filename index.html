@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Chrome Metronome</title>
+	
+	<link rel='stylesheet' type='text/css' href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb' />
+	<link rel="stylesheet" type="text/css" href="css/common.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/MetroJs.css" />
+	<script type="text/javascript" src="js/libs/jquery-1.8.1.min.js"></script>
+	<script type="text/javascript" src="js/libs/paper.js"></script>	
+    <script type="text/javascript" src="js/libs/MetroJs.js"></script>
+    <script type="text/javascript" src="js/libs/buffer-loader.js"></script>
+    <script type="text/javascript" src="js/webAudioAdapter.js"></script>    
+	<script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+	<div id="layout">
+		<h3 class="title">Dr.Beat - Metronome</h3>
+		<div id="tempo-up" class="live-tile blue">
+			<span class="tile-title">TEMPO UP</span>
+		</div>
+
+		<div id="tempo-down" class="live-tile blue">
+			<span class="tile-title">TEMPO DOWN</span>
+		</div>
+			
+		<div id="dashboard" class="live-tile two-wide lime exclude">
+			<p>TEMPO <span id="tempo" class="value">120</span> BEAT <span id="beat" class="value">1</span> <span class="right">VOLUME <span id="volume" class="value">0</span></span></p>
+			<p id="count" style="float:right; font-size: 60px; font-weight: bold;">1</p>
+		</div>
+
+		<div id="volume-up" class="live-tile mango">
+			<span class="tile-title">VOLUME UP</span>
+		</div>
+
+		<div id="beat-up" class="live-tile teal">
+			<span class="tile-title">BEAT UP</span>
+		</div>
+
+		<div id="beat-down" class="live-tile teal">
+			<span class="tile-title">BEAT DOWN</span>
+		</div>
+
+		<div id="start-stop" class="live-tile red">
+			<span class="tile-title">START / STOP</span>
+		</div>
+
+		<div id="rhythm" class="live-tile brown exclude">
+			<span class="tile-title">RHYTHM</span>
+			<p>NOT IMPLEMENTED YET</p>
+		</div>
+
+		<div id="volume-down" class="live-tile mango">
+			<span class="tile-title">VOLUME DOWN</span>
+		</div>
+
+	</div>
+</body>
+</html>

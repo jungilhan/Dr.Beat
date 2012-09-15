@@ -1,0 +1,20 @@
+body { 
+	font-family: 'NanumGothicWeb'; 
+}
+
+#layout {
+	margin: 0px auto;
+	padding: 5px;
+	width: 955px;
+	height: 430px;
+	/*border: 2px dashed lightgray;*/
+}
+
+#dashboard .value {	
+	font-size: 24px;
+}
+
+.title {
+	margin: 10px 5px;
+	color: #444;
+}

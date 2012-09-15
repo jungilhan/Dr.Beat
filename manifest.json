@@ -1,0 +1,21 @@
+﻿ {
+	"name": "Dr.Beat",
+	"description" : "Dr.Beat helps your practice in maintaining a consistent tempo",
+	"version": "1.0.0",
+	"manifest_version": 2,
+	"homepage_url": "http://github.com/jungilhan/dr.beat",
+	"icons": {
+		"16" : "images/icon16x16.png",
+		"24" : "images/icon24x24.png",
+		"48" : "images/icon48x48.png",
+		"128" : "images/icon128x128.png"
+	},
+	"app": {
+		"launch": {
+			"local_path": "index.html"
+		}
+	},	
+	"permissions": [
+		
+	]
+}
