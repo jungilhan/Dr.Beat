@@ -5,7 +5,7 @@ $(document).ready(function () {
 	if (conf === null) {
 		conf = {
 			tempo: 100,
-			volume: 100,
+			volume: 80,
 			beat: 4
 		};
 	}
@@ -120,10 +120,6 @@ var Tempo = function(value) {
 	var MIN = value.min;
 	var tempo = value.tempo;
 
-	/*var MAX = 250;
-	var MIN = 60;
-	var tempo = value;
-*/
 	this.getValue = function() {
 		return tempo;
 	}

@@ -3,7 +3,7 @@ var WebAudioAdapter = function() {};
 WebAudioAdapter.context = null;
 WebAudioAdapter.loopTimer = 0;
 WebAudioAdapter.isRunning = false;
-WebAudioAdapter.volume = 100;
+WebAudioAdapter.volume = 80;
 
 WebAudioAdapter.init = function(volume) {
 	this.context = new webkitAudioContext();

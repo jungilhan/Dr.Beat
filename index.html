@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Chrome Metronome</title>
 	
-	<link rel='stylesheet' type='text/css' href='http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb' />
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/common.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/MetroJs.css" />
@@ -17,12 +17,12 @@
 </head>
 <body>
 	<div id="layout">
-		<h3 class="title">Dr.Beat - Metronome</h3>
-		<div id="tempo-up" class="live-tile blue">
+		<h3 class="title">DR. BEAT - METRONOME</h3>
+		<div id="tempo-up" class="live-tile clickable blue">
 			<span class="tile-title">TEMPO UP</span>
 		</div>
 
-		<div id="tempo-down" class="live-tile blue">
+		<div id="tempo-down" class="live-tile blue clickable">
 			<span class="tile-title">TEMPO DOWN</span>
 		</div>
 			
@@ -31,19 +31,19 @@
 			<p id="count" style="float:right; font-size: 60px; font-weight: bold;">1</p>
 		</div>
 
-		<div id="volume-up" class="live-tile mango">
+		<div id="volume-up" class="live-tile clickable mango">
 			<span class="tile-title">VOLUME UP</span>
 		</div>
 
-		<div id="beat-up" class="live-tile teal">
+		<div id="beat-up" class="live-tile clickable teal">
 			<span class="tile-title">BEAT UP</span>
 		</div>
 
-		<div id="beat-down" class="live-tile teal">
+		<div id="beat-down" class="live-tile clickable teal">
 			<span class="tile-title">BEAT DOWN</span>
 		</div>
 
-		<div id="start-stop" class="live-tile red">
+		<div id="start-stop" class="live-tile clickable red">
 			<span class="tile-title">START / STOP</span>
 		</div>
 
@@ -52,10 +52,13 @@
 			<p>NOT IMPLEMENTED YET</p>
 		</div>
 
-		<div id="volume-down" class="live-tile mango">
+		<div id="volume-down" class="live-tile clickable mango">
 			<span class="tile-title">VOLUME DOWN</span>
 		</div>
 
+		<div id="footer">
+			<p class="right">SOURCE IS NOW AT <a href="https://github.com/jungilhan/Dr.Beat" class="link">GITHUB!</span></p>
+		</div>
 	</div>
 </body>
 </html>

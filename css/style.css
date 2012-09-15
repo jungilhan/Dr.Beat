@@ -1,11 +1,11 @@
 body { 
-	font-family: 'NanumGothicWeb'; 
+	font-family: 'Open Sans', sans-serif;; 
 }
 
 #layout {
 	margin: 0px auto;
 	padding: 5px;
-	width: 955px;
+	max-width: 955px;
 	height: 430px;
 	/*border: 2px dashed lightgray;*/
 }
@@ -16,5 +16,18 @@ body {
 
 .title {
 	margin: 10px 5px;
-	color: #444;
+	color: #666;
+	font-size: 1.2em;
+	font-style: bold;
+}
+
+#footer .link {
+	color: #FC575E;
+	text-decoration: none;
+}
+
+#footer p {
+	color: #666;
+	font-size: 0.8em;
+	padding-right: 10px;
 }
