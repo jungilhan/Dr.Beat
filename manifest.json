@@ -17,5 +17,9 @@
 	},	
 	"permissions": [
 		
+	],
+	"web_accessible_resources": [
+		"images/quarter.png",
+		"images/eighth.png"
 	]
 }
