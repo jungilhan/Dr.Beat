@@ -6,28 +6,31 @@ $(document).ready(function () {
 		conf = {
 			tempo: 100,
 			volume: 80,
-			beat: 4
+			beat: 4,
+			rhythm: "quarter"
 		};
 	}
-
-	var dashboard = new Dashboard();
-	dashboard.update(conf);
 
 	var tempo = new Tempo({
 		max: 250,
 		min: 60,
 		tempo: Number(conf.tempo)
 	});
+
 	var beat = new Beat({
 		max: 8,
 		min: 1,
 		beat: Number(conf.beat)
 	});
 
-	var buffers = null;
+	var rhythm = new Rhythm(conf.rhythm);	
+
+	var dashboard = new Dashboard();
+	dashboard.update(conf);
 
 	WebAudioAdapter.init(Number(conf.volume));
-	var bufferLoader = new BufferLoader(WebAudioAdapter.context, ['resources/stick.ogg', 'resources/closed_hh.ogg'], function(bufferList) {
+	var buffers = null;
+	var bufferLoader = new BufferLoader(WebAudioAdapter.context, ['resources/stick.ogg', 'resources/closed_hh.ogg', 'resources/kick.ogg'], function(bufferList) {
 		buffers = bufferList;
 	});
 	bufferLoader.load();
@@ -38,7 +41,7 @@ $(document).ready(function () {
 			tempo: tempo.getValue()
 		});
 
-		WebAudioAdapter.setTempo(tempo.getValue());
+		WebAudioAdapter.setTempo(rhythm.toTempo(tempo.getValue()));
 	});
 
 	$("#tempo-down").click(function() {
@@ -47,7 +50,7 @@ $(document).ready(function () {
 			tempo: tempo.getValue()
 		});
 
-		WebAudioAdapter.setTempo(tempo.getValue());
+		WebAudioAdapter.setTempo(rhythm.toTempo(tempo.getValue()));		
 	});
 
 	$("#volume-up").click(function() {
@@ -77,41 +80,57 @@ $(document).ready(function () {
 	});
 
 	$("#start-stop").click(function() {
-		if (WebAudioAdapter.isRunning) {
+		if (WebAudioAdapter.isPlaying) {
 			WebAudioAdapter.stop();
 
 		} else {
 			if (buffers !== null) {
-				WebAudioAdapter.setTempo(tempo.getValue());
+				WebAudioAdapter.setTempo(rhythm.toTempo(tempo.getValue()));
 				WebAudioAdapter.setBuffer(buffers[0]);
+
 				WebAudioAdapter.play(function() {
-					beat.addCount();
+					var count = beat.addCount();
 
-					var count = beat.getCount();
-					if (count == 1) {
-						WebAudioAdapter.setBuffer(buffers[0]);
+					if (rhythm.getValue() == "quarter") {				
+						if (count == 1) {
+							WebAudioAdapter.setBuffer(buffers[0]);
+						} else {
+							WebAudioAdapter.setBuffer(buffers[1]);
+						}
+
+						dashboard.update({
+							count: count
+						});
 					} else {
-						WebAudioAdapter.setBuffer(buffers[1]);
-					}
+						var rhythmToCount = beat.addCountWithRhythm(rhythm.getValue());
 
-					dashboard.update({
-						count: count
-					});
+						if (rhythmToCount == 1) {
+							WebAudioAdapter.setBuffer(buffers[0]);
+						} else {
+							if (rhythmToCount % 2 == 0) {
+								WebAudioAdapter.setBuffer(buffers[1]);
+							} else {
+								WebAudioAdapter.setBuffer(buffers[2]);
+							}
+						}
+
+						if (rhythmToCount % 2) {
+							dashboard.update({
+								count: rhythmToCount / 2 + 0.5
+							});
+						}
+					}
 				});	
 			}
 		}
 	});
 
 	$("#rhythm").click(function() {
-		
-	});
+		dashboard.update({ 
+			rhythm: rhythm.getNextRhythm()
+		});
 
-	$(window).unload(function() {
-		saveToLocalStorage({ 
-				tempo: tempo.getValue(), 
-				volume: WebAudioAdapter.getVolume(), 
-				beat: beat.getValue()
-			});
+		WebAudioAdapter.setTempo(rhythm.toTempo(tempo.getValue()));
 	});
 });
 
@@ -142,6 +161,7 @@ var Beat = function(value) {
 	var MIN = value.min;
 	var beat = value.beat;
 	var count = 0;
+	var countWithRhythm = 0;
 
 	this.getValue = function() {
 		return beat;
@@ -170,9 +190,71 @@ var Beat = function(value) {
 			count += 1;	
 		}
 
-		console.log(count);
+		return count;
+	}
+
+	this.addCountWithRhythm = function(rhythm) {
+		var beatWithRhythm = beat;
+		if (rhythm == "eighth") {
+			beatWithRhythm *= 2;
+		}
+
+		if (countWithRhythm >= beatWithRhythm) {
+			countWithRhythm = 1;
+		} else {
+			countWithRhythm += 1;	
+		}
+
+		return countWithRhythm;
 	}
 };
+
+var Rhythm = function(value) {
+	var rhythm = value || "quarter";
+	var count = 0;
+	var $note = $("#note > img").attr({
+		src: Rhythm.getIcon(rhythm),
+		alt: rhythm
+	});
+				
+	this.getValue = function() {
+		return rhythm;
+	}
+
+	this.getNextRhythm = function() {
+		if (rhythm == "quarter") {
+			rhythm = "eighth";
+
+		} else if (rhythm == "eighth"){
+			rhythm = "quarter";
+		}	
+
+		$note.attr({
+			src: Rhythm.getIcon(rhythm),
+			alt: rhythm
+		});
+
+		return rhythm;
+	}
+
+	this.toTempo = function(globalTempo) {
+		var tempo = globalTempo;
+
+		if (rhythm == "quarter") {
+			tempo *= 1;
+
+		} else if (rhythm == "eighth"){
+			tempo *= 2;
+		}
+
+		return tempo;
+	}
+};
+
+Rhythm.getIcon = function(rhythm) {
+	return "images/" + rhythm + ".png"; 	
+}
+
 
 var Volume = function() {
 	var volume = 0;
@@ -195,6 +277,7 @@ var Dashboard = function() {
 	var $beat = $("#beat");
 	var $volume = $("#volume");
 	var $count = $("#count");
+	var $note = $("#note > img");
 
 	this.update = function(conf) {
 		$tempo.text(conf.tempo);
@@ -205,8 +288,10 @@ var Dashboard = function() {
 		saveConfiguration({
 			tempo: $tempo.text(),
 			beat: $beat.text(),
-			volume: $volume.text()
+			volume: $volume.text(),
+			rhythm: $note.attr("alt")
 		});
+
 	}
 };
 

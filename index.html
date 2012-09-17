@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Chrome Metronome</title>
+	<title>Dr. Beat - Metronome for Chrome</title>
 	
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/common.css" />
@@ -28,7 +28,7 @@
 			
 		<div id="dashboard" class="live-tile two-wide lime exclude">
 			<p>TEMPO <span id="tempo" class="value">120</span> BEAT <span id="beat" class="value">1</span> <span class="right">VOLUME <span id="volume" class="value">0</span></span></p>
-			<p id="count" style="float:right; font-size: 60px; font-weight: bold;">1</p>
+			<p id="count" class="right">1</p>
 		</div>
 
 		<div id="volume-up" class="live-tile clickable mango">
@@ -47,9 +47,14 @@
 			<span class="tile-title">START / STOP</span>
 		</div>
 
-		<div id="rhythm" class="live-tile brown exclude">
+		<div id="rhythm" class="live-tile clickable brown exclude">
+			<span id="note" class="right">
+				<img src="" alt=""/>
+				<!--<img src="images/quarter.png" alt="quarter"/>-->
+				<!--<img src="images/eighth.png" alt="eighth"/>-->
+			</span>
 			<span class="tile-title">RHYTHM</span>
-			<p>NOT IMPLEMENTED YET</p>
+			
 		</div>
 
 		<div id="volume-down" class="live-tile clickable mango">

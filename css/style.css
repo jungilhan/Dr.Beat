@@ -31,3 +31,11 @@ body {
 	font-size: 0.8em;
 	padding-right: 10px;
 }
+
+#count { 
+	font-size: 60px;
+	font-weight: bold;
+}
+#note {
+	padding: 20px;
+}
