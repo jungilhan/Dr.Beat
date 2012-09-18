@@ -82,16 +82,16 @@ $(document).ready(function () {
 	$("#start-stop").click(function() {
 		if (WebAudioAdapter.isPlaying) {
 			WebAudioAdapter.stop();
+			beat.initCount();
 
 		} else {
 			if (buffers !== null) {
 				WebAudioAdapter.setTempo(rhythm.toTempo(tempo.getValue()));
 				WebAudioAdapter.setBuffer(buffers[0]);
 
-				WebAudioAdapter.play(function() {
-					var count = beat.addCount();
-
-					if (rhythm.getValue() == "quarter") {				
+				WebAudioAdapter.play(function() {					
+					if (rhythm.getValue() == "quarter") {
+						var count = beat.addCount();	
 						if (count == 1) {
 							WebAudioAdapter.setBuffer(buffers[0]);
 						} else {
@@ -103,15 +103,10 @@ $(document).ready(function () {
 						});
 					} else {
 						var rhythmToCount = beat.addCountWithRhythm(rhythm.getValue());
-
 						if (rhythmToCount == 1) {
 							WebAudioAdapter.setBuffer(buffers[0]);
 						} else {
-							if (rhythmToCount % 2 == 0) {
-								WebAudioAdapter.setBuffer(buffers[1]);
-							} else {
-								WebAudioAdapter.setBuffer(buffers[2]);
-							}
+							WebAudioAdapter.setBuffer(buffers[1]);						
 						}
 
 						if (rhythmToCount % 2) {
@@ -130,6 +125,7 @@ $(document).ready(function () {
 			rhythm: rhythm.getNextRhythm()
 		});
 
+		beat.initCount();
 		WebAudioAdapter.setTempo(rhythm.toTempo(tempo.getValue()));
 	});
 });
@@ -179,6 +175,11 @@ var Beat = function(value) {
 		}
 	}
 
+	this.initCount = function() {
+		count = 0;
+		countWithRhythm = 0;
+	}
+
 	this.getCount = function() {
 		return count;
 	}	
@@ -225,9 +226,9 @@ var Rhythm = function(value) {
 		if (rhythm == "quarter") {
 			rhythm = "eighth";
 
-		} else if (rhythm == "eighth"){
+		} else if (rhythm == "eighth") {
 			rhythm = "quarter";
-		}	
+		}
 
 		$note.attr({
 			src: Rhythm.getIcon(rhythm),
