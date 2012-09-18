@@ -101,6 +101,7 @@ $(document).ready(function () {
 						dashboard.update({
 							count: count
 						});
+
 					} else {
 						var rhythmToCount = beat.addCountWithRhythm(rhythm.getValue());
 						if (rhythmToCount == 1) {
@@ -109,10 +110,18 @@ $(document).ready(function () {
 							WebAudioAdapter.setBuffer(buffers[1]);						
 						}
 
-						if (rhythmToCount % 2) {
-							dashboard.update({
-								count: rhythmToCount / 2 + 0.5
-							});
+						if (rhythm.getValue() == "eighth") {
+							if (rhythmToCount % 2) {
+								dashboard.update({
+									count: rhythmToCount / 2 + 0.5
+								});
+							}
+						} else if (rhythm.getValue() == "triple") {
+							if (rhythmToCount % 3 == 1) {
+								dashboard.update({
+									count: parseInt(rhythmToCount / 3) + 1
+								});
+							}
 						}
 					}
 				});	
@@ -198,6 +207,8 @@ var Beat = function(value) {
 		var beatWithRhythm = beat;
 		if (rhythm == "eighth") {
 			beatWithRhythm *= 2;
+		} else if (rhythm == "triple") {
+			beatWithRhythm *= 3;
 		}
 
 		if (countWithRhythm >= beatWithRhythm) {
@@ -227,6 +238,9 @@ var Rhythm = function(value) {
 			rhythm = "eighth";
 
 		} else if (rhythm == "eighth") {
+			rhythm = "triple";
+
+		} else if (rhythm == "triple") {
 			rhythm = "quarter";
 		}
 
@@ -246,6 +260,9 @@ var Rhythm = function(value) {
 
 		} else if (rhythm == "eighth"){
 			tempo *= 2;
+
+		} else if (rhythm == "triple"){
+			tempo *= 3;
 		}
 
 		return tempo;
