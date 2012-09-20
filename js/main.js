@@ -30,7 +30,7 @@ $(document).ready(function () {
 
 	WebAudioAdapter.init(Number(conf.volume));
 	var buffers = null;
-	var bufferLoader = new BufferLoader(WebAudioAdapter.context, ['resources/stick.ogg', 'resources/closed_hh.ogg', 'resources/kick.ogg'], function(bufferList) {
+	var bufferLoader = new BufferLoader(WebAudioAdapter.context, ['resources/stick.ogg', 'resources/closed_hh.ogg'], function(bufferList) {
 		buffers = bufferList;
 	});
 	bufferLoader.load();
