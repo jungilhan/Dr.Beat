@@ -16,4 +16,4 @@ https://chrome.google.com/webstore/detail/dkjgoodkdebpicmofjeddinkdpaalcbh
 Dr. Beat에서 사용하고 있는 음원은 <a href="https://launchpad.net/snar">Snare</a> 오픈소스 프로젝트를 참고했습니다.
 
 ##스크린샷
-(https://lh5.googleusercontent.com/-c4lSQtdwcVo/UFamKcXh_lI/AAAAAAAAGUs/jeBTpnyJl68/s640/dr.beat.png)
+![screenshot#1](https://lh5.googleusercontent.com/-c4lSQtdwcVo/UFamKcXh_lI/AAAAAAAAGUs/jeBTpnyJl68/s640/dr.beat.png)
