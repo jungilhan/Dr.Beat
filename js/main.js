@@ -116,7 +116,7 @@ $(document).ready(function () {
 									count: rhythmToCount / 2 + 0.5
 								});
 							}
-						} else if (rhythm.getValue() == "tuplet") {
+						} else if (rhythm.getValue() == "triplet") {
 							if (rhythmToCount % 3 == 1) {
 								dashboard.update({
 									count: parseInt(rhythmToCount / 3) + 1
@@ -207,7 +207,7 @@ var Beat = function(value) {
 		var beatWithRhythm = beat;
 		if (rhythm == "eighth") {
 			beatWithRhythm *= 2;
-		} else if (rhythm == "tuplet") {
+		} else if (rhythm == "triplet") {
 			beatWithRhythm *= 3;
 		}
 
@@ -238,9 +238,9 @@ var Rhythm = function(value) {
 			rhythm = "eighth";
 
 		} else if (rhythm == "eighth") {
-			rhythm = "tuplet";
+			rhythm = "triplet";
 
-		} else if (rhythm == "tuplet") {
+		} else if (rhythm == "triplet") {
 			rhythm = "quarter";
 		}
 
@@ -261,7 +261,7 @@ var Rhythm = function(value) {
 		} else if (rhythm == "eighth"){
 			tempo *= 2;
 
-		} else if (rhythm == "tuplet"){
+		} else if (rhythm == "triplet"){
 			tempo *= 3;
 		}
 
