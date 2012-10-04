@@ -137,6 +137,41 @@ $(document).ready(function () {
 		beat.initCount();
 		WebAudioAdapter.setTempo(rhythm.toTempo(tempo.getValue()));
 	});
+
+	/**
+	 * Bind an event to mouse held down event.
+	 */
+	(function() {
+		var timerId = 0;
+		var tick = 80;
+
+		var $tempUp = $("#tempo-up");
+		var $tempDown = $("#tempo-down");
+		var $beatUp = $("#beat-up");
+		var $beatDown = $("#beat-down");
+		var $volumeUp = $("#volume-up");
+		var $volumeDown = $("#volume-down");
+
+		bindMouseHeldDown($tempUp);
+		bindMouseHeldDown($tempDown);
+		bindMouseHeldDown($beatUp);
+		bindMouseHeldDown($beatDown);
+		bindMouseHeldDown($volumeUp);
+		bindMouseHeldDown($volumeDown);
+
+		function bindMouseHeldDown($target) {
+			$target.longclick(function(event) {
+				if (event.which == 1) {
+					timerId = setInterval(function() {
+						$target.click();
+					}, tick);
+				}
+			}).bind("mouseup mouseleave", function() {
+					clearInterval(timerId);
+			});
+		}	
+	}());
+
 });
 
 var Tempo = function(value) {
