@@ -172,6 +172,42 @@ $(document).ready(function () {
 		}	
 	}());
 
+	/**
+	 * Bind an event handler to the "keypress/keydown" JavaScript event
+	 */
+	 $(document).keypress(function(event) {	 	
+	 	var shortcuts = {enter: 13, space: 32};
+	 	var keyCode = (event.keyCode ? event.keyCode : event.which);	 	
+
+		switch (keyCode) {
+		case shortcuts.enter:
+			$("#rhythm").click();
+			break;
+		case shortcuts.space:
+			$("#start-stop").click();
+			break;
+		}
+	 });
+
+	 $(document).keydown(function(event) {
+		var arrow = {left: 37, up: 38, right: 39, down: 40};	 	
+		var keyCode = (event.keyCode ? event.keyCode : event.which);
+
+		switch (keyCode) {
+		case arrow.left:			
+			$("#beat-down").click();
+			break;
+		case arrow.right:	
+			$("#beat-up").click();
+			break;
+		case arrow.up:
+			$("#tempo-up").click();
+			break;
+		case arrow.down:
+			$("#tempo-down").click();
+			break;
+		}
+	 });
 });
 
 var Tempo = function(value) {
