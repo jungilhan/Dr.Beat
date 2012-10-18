@@ -13,7 +13,7 @@ $(document).ready(function () {
 
 	var tempo = new Tempo({
 		max: 250,
-		min: 60,
+		min: 40,
 		tempo: Number(conf.tempo)
 	});
 
