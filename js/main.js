@@ -1,5 +1,6 @@
 $(document).ready(function () {
 	$(".live-tile").not(".exclude").liveTile();	
+	$('a[rel*=leanModal]').leanModal({overlay: 0.2, closeButton: '.dialog-close'});
 
 	var conf = loadConfiguration();
 	if (conf === null) {
@@ -176,7 +177,7 @@ $(document).ready(function () {
 	 * Bind an event handler to the "keypress/keydown" JavaScript event
 	 */
 	 $(document).keypress(function(event) {	 	
-	 	var shortcuts = {enter: 13, space: 32};
+	 	var shortcuts = {enter: 13, space: 32, help: 63};
 	 	var keyCode = (event.keyCode ? event.keyCode : event.which);	 	
 
 		switch (keyCode) {
@@ -186,11 +187,15 @@ $(document).ready(function () {
 		case shortcuts.space:
 			$("#start-stop").click();
 			break;
+		case shortcuts.help:
+			$("#shortcuts-trigger").click();
+			break;
 		}
 	 });
 
 	 $(document).keydown(function(event) {
-		var arrow = {left: 37, up: 38, right: 39, down: 40};	 	
+		var arrow = {left: 37, up: 38, right: 39, down: 40};
+		var esc = 27;
 		var keyCode = (event.keyCode ? event.keyCode : event.which);
 
 		switch (keyCode) {
@@ -205,6 +210,12 @@ $(document).ready(function () {
 			break;
 		case arrow.down:
 			$("#tempo-down").click();
+			break;
+		case esc:
+			var display = $("#shortcuts-dialog").css("display");
+			if (display == "block") {
+				$(".dialog-close").click();
+			}
 			break;
 		}
 	 });

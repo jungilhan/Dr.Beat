@@ -73,6 +73,10 @@ input:focus {
 	text-overflow: ellipsis;
 }
 
+.image-vertical-align {
+	vertical-align: middle;
+}
+
 a {
 	color: lightgray;
 }

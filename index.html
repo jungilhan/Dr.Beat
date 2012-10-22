@@ -10,9 +10,10 @@
 	<link rel="stylesheet" type="text/css" href="css/MetroJs.css" />
 	<script type="text/javascript" src="js/libs/jquery-1.8.1.min.js"></script>
 	<script type="text/javascript" src="js/libs/jquery.longclick-min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery.leanModal.js"></script>
 	<script type="text/javascript" src="js/libs/MetroJs.js"></script>
 	<script type="text/javascript" src="js/libs/buffer-loader.js"></script>
-	<script type="text/javascript" src="js/webAudioAdapter.js"></script>    
+	<script type="text/javascript" src="js/webAudioAdapter.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
@@ -53,16 +54,89 @@
 				<!--<img src="images/quarter.png" alt="quarter"/>-->
 				<!--<img src="images/eighth.png" alt="eighth"/>-->
 			</span>
-			<span class="tile-title">RHYTHM</span>
-			
+			<span class="tile-title">RHYTHM</span>			
 		</div>
 
 		<div id="volume-down" class="live-tile clickable mango">
 			<span class="tile-title">VOLUME DOWN</span>
 		</div>
 
+		<div id="shortcuts-dialog" class="no-display">
+			<div class="dialog-content">
+				<div class="dialog-title">
+					KEYBOARD SHORTCUTS
+					<a href="#" class="dialog-close right">
+						<img src="images/close.png" class="image-vertical-align"/>
+					</a>
+				</div>
+				<hr>
+				<table>
+					<tr>
+						<td>
+							<div class="shortcuts">
+								<span class="shortcuts-title">SPACE</span>
+								<span class="shortcuts-desc">START / STOP</span>
+							</div>
+						</td>
+						<td>
+							<div class="shortcuts">
+								<span class="shortcuts-title">↑</span>
+								<span class="shortcuts-desc">TEMPO UP</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="shortcuts">
+								<span class="shortcuts-title">ENTER</span>
+								<span class="shortcuts-desc">RHYTHM</span>
+							</div>
+						</td>
+						<td>
+							<div class="shortcuts">
+								<span class="shortcuts-title">↓</span>
+								<span class="shortcuts-desc">TEMPO DOWN</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="shortcuts">
+								<span class="shortcuts-title">?</span>
+								<span class="shortcuts-desc">THIS DIALOG</span>
+							</div>
+						</td>
+						<td>
+							<div class="shortcuts">
+								<span class="shortcuts-title">←</span>
+								<span class="shortcuts-desc">BEAT UP</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						</td>
+						<td>
+							<div class="shortcuts">
+								<span class="shortcuts-title">→</span>
+								<span class="shortcuts-desc">BEAT DOWN</span>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
 		<div id="footer">
-			<p class="right">SOURCE IS NOW AT <a href="https://github.com/jungilhan/Dr.Beat" class="link">GITHUB!</span></p>
+			<div class="left">
+				<a id="shortcuts-trigger" href="#shortcuts-dialog" class="clickable" rel="leanModal">
+					SHORTCUTS AVAILABLE 
+					<img class="image-vertical-align" src="images/keyboard.png"/>
+				</a>
+			</div>
+			<div class="right">SOURCE IS NOW AT 
+				<a href="https://github.com/jungilhan/Dr.Beat" class="link">GITHUB!</a>
+			</div>
 		</div>
 	</div>
 </body>
