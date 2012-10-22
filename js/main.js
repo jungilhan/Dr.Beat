@@ -6,7 +6,7 @@ $(document).ready(function () {
 	if (conf === null) {
 		conf = {
 			tempo: 100,
-			volume: 80,
+			volume: 90,
 			beat: 4,
 			rhythm: "quarter"
 		};
