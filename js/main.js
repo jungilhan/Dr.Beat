@@ -5,7 +5,7 @@ $(document).ready(function () {
 	var conf = loadConfiguration();
 	if (conf === null) {
 		conf = {
-			tempo: 120,
+			tempo: 100,
 			volume: 80,
 			beat: 4,
 			rhythm: "quarter"
