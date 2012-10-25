@@ -19,7 +19,7 @@ $(document).ready(function () {
 	});
 
 	var beat = new Beat({
-		max: 8,
+		max: 16,
 		min: 1,
 		beat: Number(conf.beat)
 	});
