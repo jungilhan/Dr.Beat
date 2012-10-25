@@ -8,7 +8,7 @@ Dr. Beat는 GDG Chrome Korea의 <a href="http://goo.gl/SscNs">HackTime</a> 행�
  * <a href="http://developer.chrome.com/extensions/">Google Chrome Extensions</a>
 
 ##스크린샷
-![screenshot#1](https://lh5.googleusercontent.com/-V0sMk4-rOpg/UG25gj11flI/AAAAAAAAGVQ/qDcV0-j2ppQ/s640/Dr.Beat640x400.png)
+![screenshot#1](https://lh4.googleusercontent.com/-wIyCntnywfQ/UIlpeQStqMI/AAAAAAAAGdA/XwFeLtUdAmY/s640/Dr.Beat640x400.png)
 
 ##내려받기
 크롬 웹 스토어에서 내려받을 수 있습니다.
