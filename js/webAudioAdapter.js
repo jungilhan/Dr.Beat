@@ -6,7 +6,7 @@ WebAudioAdapter.isPlaying = false;
 
 WebAudioAdapter.init = function(volume) {
 	this.context = new webkitAudioContext();
-	this.gainNode = this.context.createGainNode();
+	this.gainNode = this.context.createGainNode();	
 	this.volume = volume;
 }
 
@@ -46,12 +46,11 @@ WebAudioAdapter.play = function(onPlayNote) {
 	if (typeof this.tempo === "undefined" || typeof this.buffer === "undefined") {
 		return;
 	}
-
-	this.isPlaying = true;
+	
 	var interval = (1 / (this.tempo / 60)) * 1000;
 	var latency = 0;
 
-	this.loopTimer = setTimeout(function() {		
+	var playImpl = function() {
 		var startTime = WebAudioAdapter.context.currentTime;
 
 		if (typeof onPlayNote !== "function") {
@@ -66,6 +65,16 @@ WebAudioAdapter.play = function(onPlayNote) {
 		WebAudioAdapter.play(onPlayNote);
 
 		latency = WebAudioAdapter.context.currentTime - startTime;
+	};
+
+	if (!this.isPlaying) {
+		this.isPlaying = true;
+		playImpl();
+		return;
+	}
+
+	this.loopTimer = setTimeout(function() {		
+		playImpl();
 	}, interval - latency * 1000);
 };
 
