@@ -8,11 +8,11 @@ WebAudioAdapter.init = function(volume) {
 	this.context = new webkitAudioContext();
 	this.gainNode = this.context.createGainNode();	
 	this.volume = volume;
-}
+};
 
 WebAudioAdapter.setBuffer = function(buffer) {
 	this.buffer = buffer;
-}
+};
 
 WebAudioAdapter.getVolume = function() {
 	return WebAudioAdapter.volume;
