@@ -219,6 +219,29 @@ $(document).ready(function () {
 			break;
 		}
 	 });
+
+	 /**
+	 * Detect when a tab is focused or not.
+	 */
+	(function() {
+		var resume = false;
+
+		 $(window).focus(function() {
+			if (resume) {
+				$("#start-stop").click();
+				resume = false;
+			}
+		 });
+
+		 $(window).blur(function() {
+		 	chrome.tabs.getCurrent(function(tab) {
+		 		if (WebAudioAdapter.isPlaying && !tab.active) {
+			 		WebAudioAdapter.stop();
+					resume = true;	
+		 		}
+		 	});
+		 });
+	 }());
 });
 
 var Tempo = function(value) {

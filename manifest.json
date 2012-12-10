@@ -1,7 +1,7 @@
 ﻿{
 	"name": "Dr. Beat",
 	"description" : "Dr. Beat metronome helps your practice in maintaining a consistent tempo.",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"manifest_version": 2,
 	"homepage_url": "http://github.com/jungilhan/dr.beat",
 	"icons": {
@@ -14,5 +14,8 @@
 		"launch": {
 			"local_path": "index.html"
 		}
-	}
+	},
+	"permissions": [
+    	"tabs"
+	]
 }
