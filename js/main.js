@@ -221,26 +221,23 @@ $(document).ready(function () {
 	 });
 
 	 /**
-	 * Detect when a tab is focused or not.
+	 * Detecting the page's visibility state.
 	 */
 	(function() {
 		var resume = false;
-
-		 $(window).focus(function() {
-			if (resume) {
-				$("#start-stop").click();
-				resume = false;
-			}
-		 });
-
-		 $(window).blur(function() {
-		 	chrome.tabs.getCurrent(function(tab) {
-		 		if (WebAudioAdapter.isPlaying && !tab.active) {
+		document.addEventListener("webkitvisibilitychange", function() {
+			if (document.webkitHidden) {
+				if (WebAudioAdapter.isPlaying) {
 			 		WebAudioAdapter.stop();
 					resume = true;	
-		 		}
-		 	});
-		 });
+		 		}				
+			} else {
+				if (resume) {
+					$("#start-stop").click();
+					resume = false;
+				}
+			}
+		}, false);
 	 }());
 });
 
