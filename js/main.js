@@ -29,9 +29,9 @@ $(document).ready(function () {
 	var dashboard = new Dashboard();
 	dashboard.update(conf);
 
-	WebAudioAdapter.init(Number(conf.volume));
+	Metronome.init(Number(conf.volume));
 	var buffers = null;
-	var bufferLoader = new BufferLoader(WebAudioAdapter.context, ['resources/stick.ogg', 'resources/closed_hh.ogg'], function(bufferList) {
+	var bufferLoader = new BufferLoader(Metronome.context, ['resources/stick.ogg', 'resources/closed_hh.ogg'], function(bufferList) {
 		buffers = bufferList;
 	});
 	bufferLoader.load();
@@ -42,7 +42,7 @@ $(document).ready(function () {
 			tempo: tempo.getValue()
 		});
 
-		WebAudioAdapter.setTempo(rhythm.toTempo(tempo.getValue()));
+		Metronome.setTempo(rhythm.toTempo(tempo.getValue()));
 	});
 
 	$("#tempo-down").click(function() {
@@ -51,18 +51,18 @@ $(document).ready(function () {
 			tempo: tempo.getValue()
 		});
 
-		WebAudioAdapter.setTempo(rhythm.toTempo(tempo.getValue()));		
+		Metronome.setTempo(rhythm.toTempo(tempo.getValue()));		
 	});
 
 	$("#volume-up").click(function() {
 		dashboard.update({
-			volume: WebAudioAdapter.volumeUp()
+			volume: Metronome.volumeUp()
 		});
 	});
 
 	$("#volume-down").click(function() {
 		dashboard.update({
-			volume: WebAudioAdapter.volumeDown()
+			volume: Metronome.volumeDown()
 		});
 	});
 
@@ -81,22 +81,22 @@ $(document).ready(function () {
 	});
 
 	$("#start-stop").click(function() {
-		if (WebAudioAdapter.isPlaying) {
-			WebAudioAdapter.stop();
+		if (Metronome.isPlaying) {
+			Metronome.stop();
 			beat.initCount();
 
 		} else {
 			if (buffers !== null) {
-				WebAudioAdapter.setTempo(rhythm.toTempo(tempo.getValue()));
-				WebAudioAdapter.setBuffer(buffers[0]);
+				Metronome.setTempo(rhythm.toTempo(tempo.getValue()));
+				Metronome.setBuffer(buffers[0]);
 
-				WebAudioAdapter.play(function() {					
+				Metronome.play(function() {					
 					if (rhythm.getValue() == "quarter") {
 						var count = beat.addCount();	
 						if (count == 1) {
-							WebAudioAdapter.setBuffer(buffers[0]);
+							Metronome.setBuffer(buffers[0]);
 						} else {
-							WebAudioAdapter.setBuffer(buffers[1]);
+							Metronome.setBuffer(buffers[1]);
 						}
 
 						dashboard.update({
@@ -106,9 +106,9 @@ $(document).ready(function () {
 					} else {
 						var rhythmToCount = beat.addCountWithRhythm(rhythm.getValue());
 						if (rhythmToCount == 1) {
-							WebAudioAdapter.setBuffer(buffers[0]);
+							Metronome.setBuffer(buffers[0]);
 						} else {
-							WebAudioAdapter.setBuffer(buffers[1]);						
+							Metronome.setBuffer(buffers[1]);						
 						}
 
 						if (rhythm.getValue() == "eighth") {
@@ -136,7 +136,7 @@ $(document).ready(function () {
 		});
 
 		beat.initCount();
-		WebAudioAdapter.setTempo(rhythm.toTempo(tempo.getValue()));
+		Metronome.setTempo(rhythm.toTempo(tempo.getValue()));
 	});
 
 	/**
@@ -227,8 +227,8 @@ $(document).ready(function () {
 		var resume = false;
 		document.addEventListener("webkitvisibilitychange", function() {
 			if (document.webkitHidden) {
-				if (WebAudioAdapter.isPlaying) {
-			 		WebAudioAdapter.stop();
+				if (Metronome.isPlaying) {
+			 		Metronome.stop();
 					resume = true;	
 		 		}				
 			} else {
