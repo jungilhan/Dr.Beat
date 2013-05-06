@@ -49,6 +49,11 @@ body {
 	padding: 20px;
 }
 
+#mute-icon {
+	padding: 20px;	
+	display: block;
+}
+
 #lean_overlay {
 	position: fixed;
 	z-index:100;

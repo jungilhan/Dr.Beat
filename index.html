@@ -28,12 +28,18 @@
 		</div>
 			
 		<div id="dashboard" class="live-tile two-wide lime exclude">
-			<p>TEMPO <span id="tempo" class="value">120</span> BEAT <span id="beat" class="value">1</span> <span class="right">VOLUME <span id="volume" class="value">0</span></span></p>
+			<p>TEMPO <span id="tempo" class="value">120</span>
+				 BEAT <span id="beat" class="value">1</span> 
+				 <span class="right invisible">VOLUME <span id="volume" class="value invisible">0</span></span>
+			</p>
 			<p id="count" class="right">1</p>
 		</div>
 
-		<div id="volume-up" class="live-tile clickable mango">
-			<span class="tile-title">VOLUME UP</span>
+		<div id="mute" class="live-tile clickable mango exclude">
+			<span id="mute-icon" class="right">
+				<img src="images/mute.png"/>
+			</span>
+			<span class="tile-title">MUTE</span>
 		</div>
 
 		<div id="beat-up" class="live-tile clickable teal">
@@ -57,8 +63,8 @@
 			<span class="tile-title">RHYTHM</span>			
 		</div>
 
-		<div id="volume-down" class="live-tile clickable mango">
-			<span class="tile-title">VOLUME DOWN</span>
+		<div id="sound-type" class="live-tile clickable green">
+			<span class="tile-title">SOUND TYPE 1</span>
 		</div>
 
 		<div id="shortcuts-dialog" class="no-display">

@@ -34,6 +34,14 @@ Metronome.volumeDown = function() {
 	return Metronome.volume;
 };
 
+Metronome.mute = function(on) {
+	if (on) {
+		Metronome.volume = 0;
+	} else {
+		Metronome.volume = 100;
+	}
+};
+
 Metronome.setTempo = function(tempo) {
 	this.tempo = tempo;
 };

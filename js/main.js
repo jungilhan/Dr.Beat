@@ -8,7 +8,8 @@ $(document).ready(function () {
 			tempo: 100,
 			volume: 90,
 			beat: 4,
-			rhythm: "quarter"
+			rhythm: "quarter",
+			mute: false
 		};
 	}
 
@@ -30,6 +31,8 @@ $(document).ready(function () {
 	dashboard.update(conf);
 
 	Metronome.init(Number(conf.volume));
+	Metronome.mute(conf.mute);	
+
 	var buffers = null;
 	var bufferLoader = new BufferLoader(Metronome.context, ['resources/stick.ogg', 'resources/closed_hh.ogg'], function(bufferList) {
 		buffers = bufferList;
@@ -64,6 +67,21 @@ $(document).ready(function () {
 		dashboard.update({
 			volume: Metronome.volumeDown()
 		});
+	});
+
+	$("#mute").click(function() {		
+		var volume = Metronome.getVolume();
+		if (volume <= 0) {
+			Metronome.mute(false);
+			dashboard.update({mute: false});
+		} else {
+			Metronome.mute(true);
+			dashboard.update({mute: true});
+		}
+	});
+
+	$("#sound-type").click(function() {
+
 	});
 
 	$("#beat-up").click(function() {
@@ -398,18 +416,23 @@ var Dashboard = function() {
 	var $volume = $("#volume");
 	var $count = $("#count");
 	var $note = $("#note > img");
+	var $mute = $("#mute-icon > img");
 
 	this.update = function(conf) {
 		$tempo.text(conf.tempo);
 		$beat.text(conf.beat);
 		$volume.text(conf.volume);
 		$count.text(conf.count);
+		if (conf.mute != undefined) {
+			conf.mute ? $mute.show() : $mute.hide();
+		}
 
 		saveConfiguration({
 			tempo: $tempo.text(),
 			beat: $beat.text(),
 			volume: $volume.text(),
-			rhythm: $note.attr("alt")
+			rhythm: $note.attr("alt"),
+			mute: $mute.css('display') != 'none' ? true : false
 		});
 	}
 };
