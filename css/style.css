@@ -51,7 +51,11 @@ body {
 
 #mute-icon {
 	padding: 20px;	
-	display: block;
+}
+
+#type-val {
+	padding: 20px;
+	font-size: 12px;
 }
 
 #lean_overlay {

@@ -1,15 +1,16 @@
 $(document).ready(function () {
 	$(".live-tile").not(".exclude").liveTile();	
-	$('a[rel*=leanModal]').leanModal({overlay: 0.2, closeButton: '.dialog-close'});
+	$('a[rel*=leanModal]').leanModal({overlay: 0.5, closeButton: '.dialog-close'});
 
 	var conf = loadConfiguration();
 	if (conf === null) {
 		conf = {
 			tempo: 100,
-			volume: 90,
+			volume: 100,
 			beat: 4,
 			rhythm: "quarter",
-			mute: false
+			mute: false,
+			type: 0
 		};
 	}
 
@@ -26,6 +27,7 @@ $(document).ready(function () {
 	});
 
 	var rhythm = new Rhythm(conf.rhythm);	
+	var type = new Type(Number(conf.type));
 
 	var dashboard = new Dashboard();
 	dashboard.update(conf);
@@ -34,7 +36,11 @@ $(document).ready(function () {
 	Metronome.mute(conf.mute);	
 
 	var buffers = null;
-	var bufferLoader = new BufferLoader(Metronome.context, ['resources/stick.ogg', 'resources/closed_hh.ogg'], function(bufferList) {
+	var sounds = ['resources/classic1.ogg', 'resources/classic2.ogg', 
+								'resources/wooden1.ogg', 'resources/wooden2.ogg',
+								'resources/electronic1.ogg', 'resources/electronic2.ogg',
+								'resources/drum1.ogg', 'resources/drum2.ogg']
+	var bufferLoader = new BufferLoader(Metronome.context, sounds, function(bufferList) {
 		buffers = bufferList;
 	});
 	bufferLoader.load();
@@ -80,8 +86,10 @@ $(document).ready(function () {
 		}
 	});
 
-	$("#sound-type").click(function() {
-
+	$("#type").click(function() {		
+		dashboard.update({
+			type: type.getNext()
+		});
 	});
 
 	$("#beat-up").click(function() {
@@ -106,15 +114,15 @@ $(document).ready(function () {
 		} else {
 			if (buffers !== null) {
 				Metronome.setTempo(rhythm.toTempo(tempo.getValue()));
-				Metronome.setBuffer(buffers[0]);
+				Metronome.setBuffer(buffers[type.get() * 2]);
 
 				Metronome.play(function() {					
 					if (rhythm.getValue() == "quarter") {
 						var count = beat.addCount();	
 						if (count == 1) {
-							Metronome.setBuffer(buffers[0]);
+							Metronome.setBuffer(buffers[type.get() * 2]);
 						} else {
-							Metronome.setBuffer(buffers[1]);
+							Metronome.setBuffer(buffers[type.get() * 2 + 1]);
 						}
 
 						dashboard.update({
@@ -124,9 +132,9 @@ $(document).ready(function () {
 					} else {
 						var rhythmToCount = beat.addCountWithRhythm(rhythm.getValue());
 						if (rhythmToCount == 1) {
-							Metronome.setBuffer(buffers[0]);
+							Metronome.setBuffer(buffers[type.get() * 2]);
 						} else {
-							Metronome.setBuffer(buffers[1]);						
+							Metronome.setBuffer(buffers[type.get() * 2 + 1]);						
 						}
 
 						if (rhythm.getValue() == "eighth") {
@@ -195,7 +203,7 @@ $(document).ready(function () {
 	 * Bind an event handler to the "keypress/keydown" JavaScript event
 	 */
 	 $(document).keypress(function(event) {	 	
-	 	var shortcuts = {enter: 13, space: 32, help: 63};
+	 	var shortcuts = {enter: 13, space: 32, help: 63, sound: 115};
 	 	var keyCode = (event.keyCode ? event.keyCode : event.which);	 	
 
 		switch (keyCode) {
@@ -207,6 +215,9 @@ $(document).ready(function () {
 			break;
 		case shortcuts.help:
 			$("#shortcuts-trigger").click();
+			break;
+		case shortcuts.sound:
+			$("#type").click();
 			break;
 		}
 	 });
@@ -410,6 +421,48 @@ var Volume = function() {
 	}	
 };
 
+var Type = function(value) {
+	var SOUND_LENGTH = 4;	
+	var type = value || 0;
+
+	this.get = function() {
+		return type;
+	}
+
+	this.getNext = function() {
+		type += 1;
+		if (type >= SOUND_LENGTH) type = 0;
+
+		return type;
+	}
+
+	Type.toString = function(value) {
+		var str = "CLASSIC";
+
+		switch (value) {
+			case 0: str = "CLASSIC"; break;
+			case 1: str = "WOODEN"; break;
+			case 2: str = "ELECTRONIC"; break;
+			case 3: str = "DRUM"; break;
+		}
+
+		return str;
+	}
+
+	Type.parse = function(str) {
+		var value = 0;
+
+		switch (str) {
+			case "CLASSIC": value = 0; break;
+			case "WOODEN": value = 1; break;
+			case "ELECTRONIC": value = 2; break;
+			case "DRUM": value = 3; break;
+		}
+
+		return value;
+	}
+}
+
 var Dashboard = function() {
 	var $tempo = $("#tempo");
 	var $beat = $("#beat");
@@ -417,22 +470,23 @@ var Dashboard = function() {
 	var $count = $("#count");
 	var $note = $("#note > img");
 	var $mute = $("#mute-icon > img");
+	var $type = $("#type-val");
 
 	this.update = function(conf) {
 		$tempo.text(conf.tempo);
 		$beat.text(conf.beat);
 		$volume.text(conf.volume);
 		$count.text(conf.count);
-		if (conf.mute != undefined) {
-			conf.mute ? $mute.show() : $mute.hide();
-		}
+		if (conf.mute !== undefined) conf.mute ? $mute.show() : $mute.hide();
+		if (conf.type !== undefined) $type.text(Type.toString(conf.type));
 
 		saveConfiguration({
 			tempo: $tempo.text(),
 			beat: $beat.text(),
 			volume: $volume.text(),
 			rhythm: $note.attr("alt"),
-			mute: $mute.css('display') != 'none' ? true : false
+			mute: $mute.css('display') != 'none' ? true : false,
+			type: Type.parse($type.text())
 		});
 	}
 };
