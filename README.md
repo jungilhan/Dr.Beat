@@ -13,7 +13,7 @@ Dr. Beat metronome has been developed as a part of the HackTime(http://goo.gl/Ss
  * Mute
 
 ##Demo
-[![screenshot#1](https://lh4.googleusercontent.com/-keYrnx7UfS8/UYpzM_LwGAI/AAAAAAAAHDc/YZbKueWhF2I/w641-h390-no/dr-beat.png)](goo.gl/oghOZ)
+[![screenshot#1](https://lh4.googleusercontent.com/-keYrnx7UfS8/UYpzM_LwGAI/AAAAAAAAHDc/YZbKueWhF2I/w641-h390-no/dr-beat.png)](http://goo.gl/oghOZ)
 
 ##Install
  * You can install from the Chroem Web Store.
