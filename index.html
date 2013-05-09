@@ -1,154 +1,154 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Dr. Beat - Metronome for Chrome</title>
-	
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="css/common.css" />
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
-	<link rel="stylesheet" type="text/css" href="css/MetroJs.css" />
-	<script type="text/javascript" src="js/libs/jquery-1.8.1.min.js"></script>
-	<script type="text/javascript" src="js/libs/jquery.longclick-min.js"></script>
-	<script type="text/javascript" src="js/libs/jquery.leanModal.js"></script>
-	<script type="text/javascript" src="js/libs/MetroJs.js"></script>
-	<script type="text/javascript" src="js/libs/buffer-loader.js"></script>
-	<script type="text/javascript" src="js/metronome.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Dr. Beat - Metronome for Chrome</title>
+  
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="css/common.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/MetroJs.css" />
+  <script type="text/javascript" src="js/libs/jquery-1.8.1.min.js"></script>
+  <script type="text/javascript" src="js/libs/jquery.longclick-min.js"></script>
+  <script type="text/javascript" src="js/libs/jquery.leanModal.js"></script>
+  <script type="text/javascript" src="js/libs/MetroJs.js"></script>
+  <script type="text/javascript" src="js/libs/buffer-loader.js"></script>
+  <script type="text/javascript" src="js/metronome.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
-	<div id="layout">
-		<h3 class="title">DR. BEAT - <span style="color: #FC575E;">METRO</span>NOME</h3>
-		<div id="tempo-up" class="live-tile clickable blue">
-			<span class="tile-title">TEMPO UP</span>
-		</div>
+  <div id="layout">
+    <h3 class="title">DR. BEAT - <span style="color: #FC575E;">METRO</span>NOME</h3>
+    <div id="tempo-up" class="live-tile clickable blue">
+      <span class="tile-title">TEMPO UP</span>
+    </div>
 
-		<div id="tempo-down" class="live-tile blue clickable">
-			<span class="tile-title">TEMPO DOWN</span>
-		</div>
-			
-		<div id="dashboard" class="live-tile two-wide lime exclude">
-			<p>TEMPO <span id="tempo" class="value">120</span>
-				 BEAT <span id="beat" class="value">1</span> 
-				 <span class="right invisible">VOLUME <span id="volume" class="value invisible">0</span></span>
-			</p>
-			<p id="count" class="right">1</p>
-		</div>
+    <div id="tempo-down" class="live-tile blue clickable">
+      <span class="tile-title">TEMPO DOWN</span>
+    </div>
+      
+    <div id="dashboard" class="live-tile two-wide lime exclude">
+      <p>TEMPO <span id="tempo" class="value">120</span>
+         BEAT <span id="beat" class="value">1</span> 
+         <span class="right invisible">VOLUME <span id="volume" class="value invisible">0</span></span>
+      </p>
+      <p id="count" class="right">1</p>
+    </div>
 
-		<div id="mute" class="live-tile clickable mango exclude">
-			<span id="mute-icon" class="right">
-				<img src="images/mute.png"/>
-			</span>
-			<span class="tile-title">MUTE</span>
-		</div>
+    <div id="mute" class="live-tile clickable mango exclude">
+      <span id="mute-icon" class="right">
+        <img src="images/mute.png"/>
+      </span>
+      <span class="tile-title">MUTE</span>
+    </div>
 
-		<div id="beat-up" class="live-tile clickable teal">
-			<span class="tile-title">BEAT UP</span>
-		</div>
+    <div id="beat-up" class="live-tile clickable teal">
+      <span class="tile-title">BEAT UP</span>
+    </div>
 
-		<div id="beat-down" class="live-tile clickable teal">
-			<span class="tile-title">BEAT DOWN</span>
-		</div>
+    <div id="beat-down" class="live-tile clickable teal">
+      <span class="tile-title">BEAT DOWN</span>
+    </div>
 
-		<div id="start-stop" class="live-tile clickable red">
-			<span class="tile-title">START / STOP</span>
-		</div>
+    <div id="start-stop" class="live-tile clickable red">
+      <span class="tile-title">START / STOP</span>
+    </div>
 
-		<div id="rhythm" class="live-tile clickable brown exclude">
-			<span id="note" class="right">
-				<img src="" alt=""/>
-				<!--<img src="images/quarter.png" alt="quarter"/>-->
-				<!--<img src="images/eighth.png" alt="eighth"/>-->
-			</span>
-			<span class="tile-title">RHYTHM</span>			
-		</div>
+    <div id="rhythm" class="live-tile clickable brown exclude">
+      <span id="note" class="right">
+        <img src="" alt=""/>
+        <!--<img src="images/quarter.png" alt="quarter"/>-->
+        <!--<img src="images/eighth.png" alt="eighth"/>-->
+      </span>
+      <span class="tile-title">RHYTHM</span>      
+    </div>
 
-		<div id="type" class="live-tile clickable green exclude">
-			<span id="type-val" class="right"></span>
-			<span class="tile-title">SOUND PACK</span>
-		</div>
+    <div id="type" class="live-tile clickable green exclude">
+      <span id="type-val" class="right"></span>
+      <span class="tile-title">SOUND PACK</span>
+    </div>
 
-		<div id="shortcuts-dialog" class="no-display">
-			<div class="dialog-content">
-				<div class="dialog-title">
-					KEYBOARD SHORTCUTS
-					<a href="#" class="dialog-close right">
-						<img src="images/close.png" class="image-vertical-align"/>
-					</a>
-				</div>
-				<hr>
-				<table>
-					<tr>
-						<td>
-							<div class="shortcuts">
-								<span class="shortcuts-title">SPACE</span>
-								<span class="shortcuts-desc">START / STOP</span>
-							</div>
-						</td>
-						<td>
-							<div class="shortcuts">
-								<span class="shortcuts-title">↑</span>
-								<span class="shortcuts-desc">TEMPO UP</span>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="shortcuts">
-								<span class="shortcuts-title">ENTER</span>
-								<span class="shortcuts-desc">RHYTHM</span>
-							</div>
-						</td>
-						<td>
-							<div class="shortcuts">
-								<span class="shortcuts-title">↓</span>
-								<span class="shortcuts-desc">TEMPO DOWN</span>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="shortcuts">
-								<span class="shortcuts-title">S</span>
-								<span class="shortcuts-desc">SOUND TYPE</span>
-							</div>
-						</td>
-						<td>
-							<div class="shortcuts">
-								<span class="shortcuts-title">←</span>
-								<span class="shortcuts-desc">BEAT UP</span>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="shortcuts">
-								<span class="shortcuts-title">?</span>
-								<span class="shortcuts-desc">THIS DIALOG</span>
-							</div>
-						</td>
-						<td>
-							<div class="shortcuts">
-								<span class="shortcuts-title">→</span>
-								<span class="shortcuts-desc">BEAT DOWN</span>
-							</div>
-						</td>
-					</tr>
-				</table>
-			</div>
-		</div>
+    <div id="shortcuts-dialog" class="no-display">
+      <div class="dialog-content">
+        <div class="dialog-title">
+          KEYBOARD SHORTCUTS
+          <a href="#" class="dialog-close right">
+            <img src="images/close.png" class="image-vertical-align"/>
+          </a>
+        </div>
+        <hr>
+        <table>
+          <tr>
+            <td>
+              <div class="shortcuts">
+                <span class="shortcuts-title">SPACE</span>
+                <span class="shortcuts-desc">START / STOP</span>
+              </div>
+            </td>
+            <td>
+              <div class="shortcuts">
+                <span class="shortcuts-title">↑</span>
+                <span class="shortcuts-desc">TEMPO UP</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="shortcuts">
+                <span class="shortcuts-title">ENTER</span>
+                <span class="shortcuts-desc">RHYTHM</span>
+              </div>
+            </td>
+            <td>
+              <div class="shortcuts">
+                <span class="shortcuts-title">↓</span>
+                <span class="shortcuts-desc">TEMPO DOWN</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="shortcuts">
+                <span class="shortcuts-title">S</span>
+                <span class="shortcuts-desc">SOUND TYPE</span>
+              </div>
+            </td>
+            <td>
+              <div class="shortcuts">
+                <span class="shortcuts-title">←</span>
+                <span class="shortcuts-desc">BEAT UP</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="shortcuts">
+                <span class="shortcuts-title">?</span>
+                <span class="shortcuts-desc">THIS DIALOG</span>
+              </div>
+            </td>
+            <td>
+              <div class="shortcuts">
+                <span class="shortcuts-title">→</span>
+                <span class="shortcuts-desc">BEAT DOWN</span>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
 
-		<div id="footer">
-			<div class="left">
-				<a id="shortcuts-trigger" href="#shortcuts-dialog" class="clickable" rel="leanModal">
-					SHORTCUTS AVAILABLE 
-					<img class="image-vertical-align" src="images/keyboard.png"/>
-				</a>
-			</div>
-			<div class="right">SOURCE IS NOW AT 
-				<a href="https://github.com/jungilhan/Dr.Beat" target="_blank" class="link">GITHUB!</a>
-			</div>
-		</div>
-	</div>
+    <div id="footer">
+      <div class="left">
+        <a id="shortcuts-trigger" href="#shortcuts-dialog" class="clickable" rel="leanModal">
+          SHORTCUTS AVAILABLE 
+          <img class="image-vertical-align" src="images/keyboard.png"/>
+        </a>
+      </div>
+      <div class="right">SOURCE IS NOW AT 
+        <a href="https://github.com/jungilhan/Dr.Beat" target="_blank" class="link">GITHUB!</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

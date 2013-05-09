@@ -1,106 +1,106 @@
 body { 
-	font-family: 'Open Sans', sans-serif;; 
+  font-family: 'Open Sans', sans-serif;; 
 }
 
 #layout {
-	margin: 0px auto;
-	padding: 5px;
-	max-width: 955px;
-	height: 430px;
-	/*border: 2px dashed lightgray;*/
+  margin: 0px auto;
+  padding: 5px;
+  max-width: 955px;
+  height: 430px;
+  /*border: 2px dashed lightgray;*/
 }
 
-#dashboard .value {	
-	font-size: 24px;
+#dashboard .value { 
+  font-size: 24px;
 }
 
 .title {
-	margin: 10px 5px;
-	color: #666;
-	font-size: 1.2em;
-	font-style: bold;
+  margin: 10px 5px;
+  color: #666;
+  font-size: 1.2em;
+  font-style: bold;
 }
 
 #footer .link {
-	color: #FC575E;
-	text-decoration: none;	
+  color: #FC575E;
+  text-decoration: none;  
 }
 
-#footer a {	
-	color: #666;
-	font-style: bold;
+#footer a { 
+  color: #666;
+  font-style: bold;
 }
 
 #footer div {
-	color: #666;
-	font-size: 0.8em;
-	font-style: bold;
-	padding-left: 5px;
-	padding-top: 10px;
-	padding-right: 10px;	
+  color: #666;
+  font-size: 0.8em;
+  font-style: bold;
+  padding-left: 5px;
+  padding-top: 10px;
+  padding-right: 10px;  
 }
 
 #count { 
-	font-size: 60px;
-	font-weight: bold;
+  font-size: 60px;
+  font-weight: bold;
 }
 
 #note {
-	padding: 20px;
+  padding: 20px;
 }
 
 #mute-icon {
-	padding: 20px;	
+  padding: 20px;  
 }
 
 #type-val {
-	padding: 20px;
-	font-size: 12px;
+  padding: 20px;
+  font-size: 12px;
 }
 
 #lean_overlay {
-	position: fixed;
-	z-index:100;
-	top: 0px;
-	left: 0px;
-	height:100%;
-	width:100%;
-	background: #000;
-	display: none;
+  position: fixed;
+  z-index:100;
+  top: 0px;
+  left: 0px;
+  height:100%;
+  width:100%;
+  background: #000;
+  display: none;
 }
 
 #shortcuts-dialog {
-	min-width: 460px;
-	border: 3px solid transparent;
-	border-radius: 5px;
-	box-shadow: 0 0 18px rgba(0, 0, 0, 0.4);
+  min-width: 460px;
+  border: 3px solid transparent;
+  border-radius: 5px;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.4);
 }
 
 .dialog-content {
-	background-color: white;
-	padding: 10px;
-	border-radius: 4px;
-	background: -webkit-linear-gradient(white, #F4F9FB);
+  background-color: white;
+  padding: 10px;
+  border-radius: 4px;
+  background: -webkit-linear-gradient(white, #F4F9FB);
 }
 
 .shortcuts {
-	margin: 2px 0px;
-	margin-right: 10px;
+  margin: 2px 0px;
+  margin-right: 10px;
 }
 
 .shortcuts-title {
-	display: inline-block;
-	margin: 0;
-	padding: 3px 6px;
-	min-width: 14px;
-	text-align: center;
-	background: #333;
-	color: #EEE;
-	border-radius: 2px;
-	font-size: 0.8em;
-	text-shadow: 1px 1px 0 black;
+  display: inline-block;
+  margin: 0;
+  padding: 3px 6px;
+  min-width: 14px;
+  text-align: center;
+  background: #333;
+  color: #EEE;
+  border-radius: 2px;
+  font-size: 0.8em;
+  text-shadow: 1px 1px 0 black;
 }
 
 .shortcuts-desc {
-	font-size: 0.8em;
+  font-size: 0.8em;
 }
