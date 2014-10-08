@@ -5,10 +5,21 @@ Metronome.loopTimer = 0;
 Metronome.isPlaying = false;
 
 Metronome.init = function(volume) {
-	this.context = new webkitAudioContext();
-	this.gainNode = this.context.createGainNode();	
+	this.context = this.getAudioContext();
+	this.gainNode = this.context.createGain();	
 	this.volume = volume;
 }
+
+Metronome.getAudioContext = function() {
+	if (typeof AudioContext !== "undefined") {
+    	context = new AudioContext();
+	} else if (typeof webkitAudioContext !== "undefined") {
+	    context = new webkitAudioContext();
+	} else {
+	    throw new Error('AudioContext not supported. :(');
+	}
+	return context;
+};
 
 Metronome.setBuffer = function(buffer) {
 	this.buffer = buffer;
@@ -90,11 +101,11 @@ Metronome.playNote = function(buffer, when) {
 	var source = this.context.createBufferSource();
 	source.buffer = buffer;
 
-	var gainNode = this.context.createGainNode();
+	var gainNode = this.context.createGain();
 	gainNode.gain.value = this.volume / 100;
 	source.connect(gainNode);
 	gainNode.connect(this.context.destination);			
-	source.noteOn(when);	
+	source.start(when);	
 };
 
 Metronome.stop = function(timerId) {
